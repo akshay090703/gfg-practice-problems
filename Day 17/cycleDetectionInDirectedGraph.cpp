@@ -25,7 +25,7 @@ public:
                 }
             }
         }
-        dfsVisited[node] = false;
+        dfsVisited[node] = false; // backtrack
 
         return false;
     }
