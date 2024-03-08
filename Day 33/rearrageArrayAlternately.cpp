@@ -38,6 +38,8 @@ public:
             arr[i] = modified_element;
         }
 
+        // to get the desired ouput divide by max_element
+        // to get original array modulo by max_element
         for (int i = 0; i < n; i++)
         {
             arr[i] /= max_element;
