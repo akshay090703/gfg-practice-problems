@@ -25,15 +25,13 @@ public:
             maxArr[i] = max(maxArr[i + 1], a[i]);
         }
 
-        int max_index = -1;
-        int left = 0;
-        int right = 0;
-
+        int max_idx = -1;
+        int left = 0, right = 0;
         while (left < n and right < n)
         {
             if (minArr[left] <= maxArr[right])
             {
-                max_index = max(max_index, right - left);
+                max_idx = max(max_idx, right - left);
                 right++;
             }
             else
@@ -42,7 +40,7 @@ public:
             }
         }
 
-        return max_index;
+        return max_idx;
     }
 };
 
