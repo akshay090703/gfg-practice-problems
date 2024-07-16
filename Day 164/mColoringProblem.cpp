@@ -6,9 +6,9 @@ using namespace std;
 class Solution
 {
 public:
-    bool isColorSafe(unordered_map<int, vector<int>> &adjList, vector<int> &colored, int node, int color)
+    bool isSafeColor(unordered_map<int, vector<int>> &adjList, vector<int> &colored, int node, int color)
     {
-        for (auto neighbour : adjList[node])
+        for (int neighbour : adjList[node])
         {
             if (colored[neighbour] == color)
                 return false;
@@ -17,20 +17,23 @@ public:
         return true;
     }
 
-    bool solve(unordered_map<int, vector<int>> &adjList, int m, int n, vector<int> &colored, int node)
+    bool solve(unordered_map<int, vector<int>> &adjList, vector<int> &colored, int m, int n, int node)
     {
         if (node == n)
             return true;
 
         for (int color = 1; color <= m; color++)
         {
-            if (isColorSafe(adjList, colored, node, color))
+            if (isSafeColor(adjList, colored, node, color))
             {
                 colored[node] = color;
 
-                if (solve(adjList, m, n, colored, node + 1))
+                if (solve(adjList, colored, m, n, node + 1))
+                {
                     return true;
+                }
 
+                // backtracking: trying other colors as well
                 colored[node] = 0;
             }
         }
@@ -47,15 +50,16 @@ public:
         {
             for (int j = 0; j < n; j++)
             {
-                if (graph[i][j] && i != j)
+                if (graph[i][j] and i != j)
                 {
                     adjList[i].push_back(j);
+                    adjList[j].push_back(i);
                 }
             }
         }
 
         vector<int> colored(n, 0);
-        return solve(adjList, m, n, colored, 0);
+        return solve(adjList, colored, m, n, 0);
     }
 };
 
