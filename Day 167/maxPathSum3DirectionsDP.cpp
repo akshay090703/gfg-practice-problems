@@ -11,7 +11,7 @@ class Solution
 {
 public:
     // Recursion
-    // TC -> O(n * 2^(n*n))
+    // TC -> O(n * 3^(n*n))
     // SC -> O(path sum)
     // int solve(int n, int m, vector<vector<int>> &mat, int N) {
     //     if(n < 0 or m < 0 or m < N) return 0;
