@@ -6,6 +6,31 @@ using namespace std;
 class Solution
 {
 public:
+    bool dfs(vector<int> graph[], vector<int> &color, int currNode, int parent)
+    {
+        int parentColor = -1;
+
+        if (parent != -1)
+            parentColor = color[parent];
+        color[currNode] = parentColor == -1 ? 0 : !parentColor;
+
+        int currColor = color[currNode];
+        for (auto neighbour : graph[currNode])
+        {
+            if (color[neighbour] == -1)
+            {
+                if (!dfs(graph, color, neighbour, currNode))
+                {
+                    return false;
+                }
+            }
+            else if (color[neighbour] == currColor)
+                return false;
+        }
+
+        return true;
+    }
+
     bool bfs(vector<int> adj[], vector<int> &color, int currNode)
     {
         queue<int> q;
@@ -43,7 +68,8 @@ public:
         {
             if (color[i] == -1)
             {
-                if (!bfs(adj, color, i))
+                // if(!bfs(adj, color, i)) return false;
+                if (!dfs(adj, color, i, -1))
                     return false;
             }
         }
