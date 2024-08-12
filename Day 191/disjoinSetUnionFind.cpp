@@ -40,20 +40,39 @@ int main()
 // } Driver Code Ends
 
 /*Complete the functions below*/
+
+// Using Union by Size
 int find(int A[], int X)
 {
-    if (X == A[X])
+    if (A[X] == X)
         return X;
 
+    // Path Compression
     return A[X] = find(A, A[X]);
 }
 void unionSet(int A[], int X, int Z)
 {
-    int ultimateParU = find(A, X);
-    int ultimateParV = find(A, Z);
+    int ulParentU = find(A, X);
+    int ulParentV = find(A, Z);
 
-    if (ultimateParU == ultimateParV)
+    if (ulParentU == ulParentV)
         return;
     else
-        A[ultimateParU] = ultimateParV;
+        A[ulParentU] = ulParentV;
 }
+
+// Using Union by rank
+// int find(int A[],int X)
+// {
+//     if(X == A[X]) return X;
+
+//     return A[X] = find(A, A[X]);
+// }
+// void unionSet(int A[],int X,int Z)
+// {
+// 	int ultimateParU = find(A, X);
+// 	int ultimateParV = find(A, Z);
+
+// 	if(ultimateParU == ultimateParV) return;
+// 	else A[ultimateParU] = ultimateParV;
+// }

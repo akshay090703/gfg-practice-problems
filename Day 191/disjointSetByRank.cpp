@@ -24,6 +24,9 @@ public:
         int ranku = rank[pu];
         int rankv = rank[pv];
 
+        if (pu == pv)
+            return;
+
         if (ranku == rankv)
         {
             rank[pu] = rankv + 1;
@@ -44,6 +47,7 @@ public:
         if (parent[u] == u)
             return u;
 
+        // Path Compression
         return parent[u] = findUParent(parent[u]);
     }
 };
