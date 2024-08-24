@@ -26,7 +26,7 @@ public
         Geeks g = new Geeks();
 
         // Calling printHello() function of the Class Geeks
-        g.printHello();
+        Geeks.printHello();
     }
 
 }
